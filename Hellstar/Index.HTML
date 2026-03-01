@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hellstar.Dopamine.xyz</title>
+    <style>
+        body, html {
+            margin: 0; padding: 0; 
+            width: 100%; height: 100%; 
+            overflow: hidden; 
+            background-color: #000;
+        }
+
+        .hero-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #intro-video {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: 10;
+            transition: opacity 1.5s ease;
+        }
+
+        /* FONDO: SIN CAMBIOS */
+        #main-content {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100dvh; 
+            background-image: url('https://i.ibb.co/bR7hxjLx/hellstar-prueba.jpg');
+            background-repeat: no-repeat;
+            background-color: #000000;
+            background-size: cover;
+            background-position: center;
+            z-index: 5;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+        /* BOTÓN: Posición independiente */
+        .button-wrapper {
+            position: absolute;
+            top: 64%; /* Cambia esto para subir/bajar el BOTÓN */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 20;
+            width: 60%; 
+            max-width: 300px;
+        }
+
+        .click-button { display: block; width: 100%; }
+        .click-button img { width: 100%; display: block; }
+
+        /* TEXTOS: Posición independiente */
+        .text-wrapper {
+            position: absolute;
+            top: 78%; /* Cambia esto para subir/bajar el BLOQUE DE TEXTO */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 20;
+            text-align: center;
+            width: 100%;
+            color: #ffffff;
+            font-family: sans-serif;
+        }
+
+        .status-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            opacity: 0.8;
+        }
+
+        .fade-out { opacity: 0 !important; pointer-events: none; }
+        .active { opacity: 1 !important; z-index: 6 !important; }
+    </style>
+</head>
+<body>
+
+    <div class="hero-container">
+        <video id="intro-video" autoplay muted playsinline>
+            <source src="https://github.com/chipnfcac-lgtm/assets/raw/main/202602281524%20(1).mp4" type="video/mp4">
+        </video>
+
+        <div id="main-content">
+            <div class="button-wrapper">
+                <a href="https://www.instagram.com/hellstar?igsh=MWZzdzk2aHJkOXE1aw==" target="_blank" class="click-button">
+                    <img src="https://i.ibb.co/4ZN3LmxV/click-to-join2.png" alt="Click to Join">
+                </a>
+            </div>
+
+            <div class="text-wrapper">
+                <div class="status-text">UNCLAIMED</div>
+                <div class="stats-row">
+                    <span><span id="scan-count">0</span> scans</span>
+                    <span>0 blessings</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let count = localStorage.getItem('totalScans') || 0;
+        count = parseInt(count) + 1;
+        localStorage.setItem('totalScans', count);
+        document.getElementById('scan-count').innerText = count;
+
+        const video = document.getElementById('intro-video');
+        const content = document.getElementById('main-content');
+
+        setTimeout(() => {
+            video.classList.add('fade-out');
+            content.classList.add('active');
+        }, 6500); 
+    </script>
+</body>
+</html>
